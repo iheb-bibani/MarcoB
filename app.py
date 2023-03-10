@@ -138,32 +138,40 @@ if assets == 'FX' :
 
     data = ['weekly', 'monthly','quarterly']
 
-    fig = make_subplots(rows=2, cols=1, shared_xaxes=True,vertical_spacing=0.05)
+    fig = go.Figure()
 
-    data = ['weekly', 'monthly', 'quarterly']
+    df.index = pd.to_datetime(df['date'],format='%Y-%m-%d')
+
+    data = ['weekly', 'monthly','quarterly']
+
+    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.05)
 
     fig.add_trace(
         go.Bar(name='pnl', x=data, y=[df['pnl'].tail(5).sum(),
                                       df['pnl'].tail(21).sum(),
                                       df['pnl'].tail(62).sum()]),
-        row=1, col=1)
+        row=1, col=1
+    )
 
     fig.add_trace(
         go.Bar(name='dd', x=data, y=[df['dd'].tail(5).sum(),
                                      df['dd'].tail(21).sum(),
                                      df['dd'].tail(62).sum()]),
-        row=1, col=1)
+        row=1, col=1
+    )
 
     fig.add_trace(
         go.Bar(name='sharpe', x=data, y=[np.sqrt(252) * df['pnl'].tail(5).mean() / df['pnl'].tail(5).std(),
-                                             np.sqrt(252) * df['pnl'].tail(21).mean() / df['pnl'].tail(21).std(),
-                                             np.sqrt(252) * df['pnl'].tail(62).mean() / df['pnl'].tail(62).std()
-                                             ]),
-        row=2, col=1)
+                                         np.sqrt(252) * df['pnl'].tail(21).mean() / df['pnl'].tail(21).std(),
+                                         np.sqrt(252) * df['pnl'].tail(62).mean() / df['pnl'].tail(62).std()
+                                         ]),
+        row=2, col=1
+    )
 
-    # Set y-axis titles for the two subplots
-    fig.update_yaxes(title_text="pnl and dd", row=1, col=1)
-    fig.update_yaxes(title_text="sharpe", row=2, col=1)
+    fig.update_layout(height=600, width=800, title_text="PnL and DD vs. Sharpe")
+
+    fig.update_yaxes(title_text="PnL and DD", row=1, col=1)
+    fig.update_yaxes(title_text="Sharpe", row=2, col=1)
 
     st.plotly_chart(fig)
 
