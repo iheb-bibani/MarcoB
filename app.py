@@ -177,24 +177,26 @@ if assets == 'FX' :
 
     # Table : Returns
     st.subheader('Table : Returns')
+    
+    df['date'] = pd.to_datetime(df['date']) 
 
-    df['returns'] = df['close'].pct_change()[1:]
-
-    # total
-    x1 = df.groupby(df.date.dt.year)['returns'].sum()
+    x1 = df.resample('Y', on='date')['pnl'].sum()
     x1 = pd.DataFrame(pd.DataFrame(x1).transpose())
-    x1.iloc[0,0],x1.iloc[0,1] = x1.iloc[0,1],x1.iloc[0,0]
+    x1.columns = [2022, 2023]
 
     # by month
-    x2 = df.groupby(df.date.dt.month)['returns'].sum()
+    x2 = df.resample('m', on='date')['pnl'].sum()
 
-    # some workarounds
-    x3 = x2.iloc[:3] # 1,2,3 for 2023
+    x3 = x2.iloc[:2]
     x3 = pd.DataFrame(x3)
-    x4 = x2.iloc[3:] # 11,12 for 2022
-    x5 = pd.concat([x3,x4])
-    x5.columns = [2022,2023]
+
+    x4 = x2.iloc[2:]
+
+    x5 = pd.concat([x3, x4])
+    x5.columns = [2022, 2023]
     x5.index = x5.index.astype(str)
+
+    st.table(pd.concat([x5,x1])) # stopped here 
 
     x6 = df.groupby(df.date.dt.year)['sharpe'].mean()
     x6 = pd.DataFrame(x6).T
