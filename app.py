@@ -206,7 +206,7 @@ if assets == 'FX' :
 
     x8 = pd.concat([x6,x7])
     x9 = pd.concat([x5,x8],axis=0)
-    st.table(pd.concat([x1,x9]))
+    #st.table(pd.concat([x1,x9]))
 
     #def add_datepart(df):
     #    fld=df.index
