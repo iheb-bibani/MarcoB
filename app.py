@@ -97,7 +97,7 @@ if assets == 'FX' :
     trace2 = go.Scatter(x=df['date'], y=df['cumpnl'], name='cumpnl', yaxis='y2')
 
     # create layout with two y axes
-    layout = go.Layout(title='Two Axes Plot', yaxis=dict(title='dd'),
+    layout = go.Layout(yaxis=dict(title='dd'),
                        yaxis2=dict(title='cumpnl', overlaying='y', side='right'))
 
     # create figure with both traces and layout
@@ -116,7 +116,7 @@ if assets == 'FX' :
     trace2 = go.Scatter(x=df['date'], y=df['sharpe3m'], name='sharpe', yaxis='y2')
 
     # create layout with two y axes
-    layout = go.Layout(title='Two Axes Plot', yaxis=dict(title='close'), yaxis2=dict(title='sharpe', overlaying='y', side='right'))
+    layout = go.Layout(yaxis=dict(title='close'), yaxis2=dict(title='sharpe', overlaying='y', side='right'))
 
     # create figure with both traces and layout
     fig = go.Figure(data=[trace1, trace2], layout=layout)
@@ -134,7 +134,7 @@ if assets == 'FX' :
     trace2 = go.Scatter(x=df['date'], y=df['std3m'], name='rolling std', yaxis='y2')
 
     # create layout with two y axes
-    layout = go.Layout(title='Two Axes Plot', yaxis=dict(title='rolling sharpe'), yaxis2=dict(title='rolling std', overlaying='y', side='right'))
+    layout = go.Layout(yaxis=dict(title='rolling sharpe'), yaxis2=dict(title='rolling std', overlaying='y', side='right'))
 
     # create figure with both traces and layout
     fig = go.Figure(data=[trace1, trace2], layout=layout)
