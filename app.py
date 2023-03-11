@@ -210,16 +210,27 @@ if assets == 'FX' :
     x5.columns = [2022, 2023]
     x5.index = x5.index.astype(str)
 
-    st.table(pd.concat([x5,x1])) # stopped here 
+    x6 = pd.concat([x5,x1])
 
-    x6 = df.groupby(df.date.dt.year)['sharpe'].mean()
-    x6 = pd.DataFrame(x6).T
+    avol_2022 = ((x6[2022][:-1].std()*np.sqrt(252)) + 0.0001)
+    avol_2023 = ((x6[2023][:-1].std()*np.sqrt(252)) + 0.0001)
 
-    x7 = df.groupby(df.date.dt.year)['maxdd'].mean()
-    x7 = pd.DataFrame(x7).T
+    x7 = pd.DataFrame({2022:[avol_2022],2023:[avol_2023]})
+    x7.index = ["avol"]
 
     x8 = pd.concat([x6,x7])
-    #st.table(pd.concat([x1,x9]))
+
+    ameanrt_2022 = 252*x6[2022][:-1].mean()
+    ameanrt_2023 = 252*x6[2023][:-1].mean()
+
+    sharpe_2022 = ameanrt_2022/avol_2022
+    sharpe_2023 = ameanrt_2023/avol_2023
+
+    x9 = pd.DataFrame({2022:[sharpe_2022],2023:[sharpe_2023]})
+    x9.index = ["sharpe"]
+
+    x10 = pd.concat([x8,x9])
+    st.table(x10)
 
     #def add_datepart(df):
     #    fld=df.index
