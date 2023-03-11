@@ -204,7 +204,7 @@ if assets == 'FX' :
     x7 = df.groupby(df.date.dt.year)['maxdd'].mean()
     x7 = pd.DataFrame(x7).T
 
-     x8 = pd.concat([x6,x7])
+    x8 = pd.concat([x6,x7])
     #st.table(pd.concat([x1,x9]))
 
     #def add_datepart(df):
