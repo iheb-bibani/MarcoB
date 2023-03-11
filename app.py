@@ -90,7 +90,7 @@ if assets == 'FX' :
     st.plotly_chart(fig)
 
     # Graph 2
-    st.subheader('Graph 2 : dd VS cumpnl')
+    st.subheader('Graph 2 : cumpnl vs dd')
     
     # create first trace
     trace1 = go.Scatter(x=df['date'], y=df['dd'], name='dd',line=dict(color='red'))
