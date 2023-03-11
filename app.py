@@ -90,9 +90,21 @@ if assets == 'FX' :
     st.plotly_chart(fig)
 
     # Graph 2
-    st.subheader('Graph 2 : cumpnl vs dd ')
-    fig = px.area(df[['dd','cumpnl']],facet_col_wrap=2, color_discrete_sequence=['red','#636EFA',])
-    st.plotly_chart(fig)
+    # create first trace
+    trace1 = go.Scatter(x=df['date'], y=df['dd'], name='dd',line=dict(color='red'))
+
+    # create second trace
+    trace2 = go.Scatter(x=df['date'], y=df['cumpnl'], name='cumpnl', yaxis='y2')
+
+    # create layout with two y axes
+    layout = go.Layout(title='Two Axes Plot', yaxis=dict(title='dd'),
+                       yaxis2=dict(title='cumpnl', overlaying='y', side='right'))
+
+    # create figure with both traces and layout
+    fig = go.Figure(data=[trace1, trace2], layout=layout)
+
+    # show figure
+    st.plotly_chart(fig))
 
     # Graph 3
     st.subheader('Graph 3 : Asset Price , Rolling Sharpe ')
