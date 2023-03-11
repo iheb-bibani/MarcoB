@@ -206,17 +206,17 @@ if assets == 'FX' :
 
      x8 = pd.concat([x6,x7])
 
-    ameanrt_2022 = 252*x6[2022][:-1].mean()
-    ameanrt_2023 = 252*x6[2023][:-1].mean()
+     ameanrt_2022 = 252*x6[2022][:-1].mean()
+     ameanrt_2023 = 252*x6[2023][:-1].mean()
 
-    sharpe_2022 = ameanrt_2022/avol_2022
-    sharpe_2023 = ameanrt_2023/avol_2023
+     sharpe_2022 = ameanrt_2022/avol_2022
+     sharpe_2023 = ameanrt_2023/avol_2023
 
-    x9 = pd.DataFrame({2022:[sharpe_2022],2023:[sharpe_2023]})
-    x9.index = ["sharpe"]
+     x9 = pd.DataFrame({2022:[sharpe_2022],2023:[sharpe_2023]})
+     x9.index = ["sharpe"]
 
-    x10 = pd.concat([x8,x9])
-    st.table(x10)
+     x10 = pd.concat([x8,x9])
+     st.table(x10)
     #st.table(pd.concat([x1,x9]))
 
     #def add_datepart(df):
