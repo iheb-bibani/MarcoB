@@ -91,7 +91,7 @@ if assets == 'FX' :
 
     # Graph 2
     st.subheader('Graph 2 : cumpnl vs dd ')
-    fig = px.area(df[['dd','cumpnl']],facet_col_wrap=2, color_discrete_sequence=['#636EFA', 'red'])
+    fig = px.area(df[['dd','cumpnl']],facet_col_wrap=2, color_discrete_sequence=['red','#636EFA',])
     st.plotly_chart(fig)
 
     # Graph 3
