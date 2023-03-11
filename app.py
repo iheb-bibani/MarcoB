@@ -104,7 +104,7 @@ if assets == 'FX' :
     fig = go.Figure(data=[trace1, trace2], layout=layout)
 
     # show figure
-    st.plotly_chart(fig))
+    st.plotly_chart(fig)
 
     # Graph 3
     st.subheader('Graph 3 : Asset Price , Rolling Sharpe ')
